@@ -16,6 +16,9 @@ describe("All test cases of Museum Data", function () {
       done();
     }, 5000);
   });
+  
+
+  // loadMuseumData().then()
 
   it("getDataByDate() both Object should be equal", function (done) {
     let result = MSObj.getDataByDate(1404198000008);

@@ -7,7 +7,7 @@ async function loadMuseumData() {
       headers: {},
     };
   
-    return new Promise((reject, resolve) => {
+    return new Promise((resolve, reject) => {
       var req = http.request(options, function (res) {
         var chunks = [];
   
@@ -22,15 +22,15 @@ async function loadMuseumData() {
   
         res.on("error", function (error) {
           console.log("here", error);
-          reject({ error: "not able to load data", status_code: 1003 });
+          resolve(require("./offline"));
         });
       });
   
       req.end();
   
       req.on("error", function (err) {
-      //   console.log(err);
-        reject({ error: "not able to load data", status_code: 1003 });
+        console.log(err);
+        resolve(require("./offline"));
       });
     });
   }
