@@ -1,5 +1,5 @@
 const {Visitor} = require('../../controller');
-let visitorOBJ = new Visitor();
+let visitor = new Visitor();
 let router = require('express').Router();
 
 function validator(req,res,next){
@@ -12,6 +12,6 @@ function validator(req,res,next){
     }  
 }
 
-router.get('/visitors',validator,visitorOBJ.countVisitor);
+router.get('/visitors',validator,visitor.countVisitor);
 
 module.exports = router;

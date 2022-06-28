@@ -1,4 +1,5 @@
 const { loadMuseumData } = require("./online");
+const { monthNames, converDateIntoStartOfTheDay } = require("./utils");
 
 let museumdata = [];
 
@@ -10,28 +11,7 @@ let museumdata = [];
       console.log('error',error)}
     )
 })();
-
-function converDateIntoStartOfTheDay(date) {
-  var tempDate = new Date(parseInt(date)).setUTCHours(0, 0, 0, 0);
-  return new Date(tempDate).toISOString().split("Z")[0];
-}
-
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-class MuseumData {
+class MuseumDataProvider {
   fillTemplate(data, ignore) {
     let templateResponse = {
       month: monthNames[new Date(data.month).getMonth()],
@@ -87,4 +67,4 @@ class MuseumData {
   }
 }
 
-module.exports = { MuseumData };
+module.exports = { MuseumDataProvider };

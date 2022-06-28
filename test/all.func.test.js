@@ -1,13 +1,13 @@
 require("../datasource");
 
-const { MuseumData } = require("../datasource");
+const { MuseumDataProvider } = require("../datasource");
 
 const assert = require("assert").strict;
 
 let sampleMuseumData = require("../datasource/offline");
 const { isPropertiesEqual } = require("./testUtils");
 
-let MSObj = new MuseumData();
+let MSObj = new MuseumDataProvider();
 
 describe("All test cases of Museum Data", function () {
   before((done) => {

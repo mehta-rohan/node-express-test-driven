@@ -1,6 +1,6 @@
-const {MuseumData } = require("../datasource");
+const {MuseumDataProvider } = require("../datasource");
 
-let MSObj = new MuseumData();
+let MSObj = new MuseumDataProvider();
 class Visitor {
   countVisitor(req, res) {
     let { date, ignore } = req.query || {};
