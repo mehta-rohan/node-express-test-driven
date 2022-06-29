@@ -28,18 +28,18 @@ const templateWithoutIgnore = {
   },
 };
 
-const keyify = (obj, prefix = "") =>
+const extractKeys = (obj, prefix = "") =>
   Object.keys(obj).reduce((res, el) => {
     if (Array.isArray(obj[el])) {
       return res;
     } else if (typeof obj[el] === "object" && obj[el] !== null) {
-      return [...res, ...keyify(obj[el], prefix + el + ".")];
+      return [...res, ...extractKeys(obj[el], prefix + el + ".")];
     }
     return [...res, prefix + el];
   }, []);
 
 const isPropertiesEqual = (a, b) => {
-  return keyify(a).sort().toString() == keyify(b).sort().toString();
+  return extractKeys(a).sort().toString() == extractKeys(b).sort().toString();
 };
 
 

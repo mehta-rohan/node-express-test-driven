@@ -1,17 +1,13 @@
 const {Visitor} = require('../../controller');
-let visitor = new Visitor();
+const { Validator } = require('../data-validator');
 let router = require('express').Router();
 
-function validator(req,res,next){
-    let { date } = req.query || {};
-    if(!date){
-        res.status(400).end();  
-    }
-    else{
-        next();
-    }  
-}
+let visitor = new Visitor();
 
-router.get('/visitors',validator,visitor.countVisitor);
+//data validator
+let validator = new Validator();
+
+// controller for /api/visitor
+router.get('/visitors',validator.validateVisitCount,visitor.countVisitor);
 
 module.exports = router;

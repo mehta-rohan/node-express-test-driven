@@ -7,6 +7,7 @@ async function loadMuseumData() {
       headers: {},
     };
   
+    // fetching data from source once 
     return new Promise((resolve, reject) => {
       var req = http.request(options, function (res) {
         var chunks = [];
@@ -15,11 +16,13 @@ async function loadMuseumData() {
           chunks.push(chunk);
         });
   
+        //loading data from API and resolve the error
         res.on("end", function (chunk) {
           var body = Buffer.concat(chunks);
           resolve(JSON.parse(body));
         });
   
+        //loading data from localfile in case of failure
         res.on("error", function (error) {
           console.log("here", error);
           resolve(require("./offline"));
@@ -28,6 +31,7 @@ async function loadMuseumData() {
   
       req.end();
   
+      //loading data from localfile in case of failure
       req.on("error", function (err) {
         console.log(err);
         resolve(require("./offline"));

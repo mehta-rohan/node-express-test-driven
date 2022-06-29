@@ -26,6 +26,7 @@ describe("Museum Visitor Service", () => {
         .get("/api/visitors?date=1404198000000&ignore=avila_adobe")
         .end((err, res) => {
           res.should.have.status(200);
+          //matching the response with required response
           assert.equal(isPropertiesEqual(res.body, template), false);
           done();
         });
@@ -37,6 +38,7 @@ describe("Museum Visitor Service", () => {
           .get("/api/visitors?date=1404198000000&ignore=avila_adobe1")
           .end((err, res) => {
             res.should.have.status(200);
+            //matching the response with required response
             assert.equal(isPropertiesEqual(res.body, templateWithoutIgnore), false);
             done();
           });

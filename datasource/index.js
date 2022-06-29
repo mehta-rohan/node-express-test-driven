@@ -3,6 +3,8 @@ const { monthNames, converDateIntoStartOfTheDay } = require("./utils");
 
 let museumdata = [];
 
+
+// Immediate Invoke function to load data from API or local file
 (async () => {
   await loadMuseumData()
     .then((data) => {
@@ -13,6 +15,13 @@ let museumdata = [];
 })();
 class MuseumDataProvider {
   fillTemplate(data, ignore) {
+
+    let sum = 0;
+    let max = -1,
+      maxMusem = "";
+    let low = Infinity,
+      miniMusem = "";
+
     let templateResponse = {
       month: monthNames[new Date(data.month).getMonth()],
       year: new Date(data.month).getFullYear(),
@@ -25,11 +34,7 @@ class MuseumDataProvider {
       };
     }
 
-    let sum = 0;
-    let max = -1,
-      maxMusem = "";
-    let low = Infinity,
-      miniMusem = "";
+    // calculating total, max, min in single loop
     for (const iterator of Object.keys(data)) {
       if (iterator !== "month" && iterator !== ignore) {
         sum += parseInt(data[iterator]);
@@ -43,6 +48,7 @@ class MuseumDataProvider {
         }
       }
     }
+
     templateResponse["highest"] = {
       museum: maxMusem,
       visitors: max,
@@ -50,7 +56,6 @@ class MuseumDataProvider {
 
     templateResponse["lowest"] = { museum: miniMusem, visitors: low };
     templateResponse["total"] = sum;
-    //   console.log(templateResponse, data);
     return templateResponse;
   }
 
@@ -58,12 +63,12 @@ class MuseumDataProvider {
     let startOfTheDayDate = converDateIntoStartOfTheDay(date);
     for (let index = 0; index < museumdata.length; index++) {
       const element = museumdata[index];
-      // console.log(startOfTheDayDate,);
-
+      //return when we found the element
       if (element.month === startOfTheDayDate) {
         return element;
       }
     }
+    return null;
   }
 }
 
