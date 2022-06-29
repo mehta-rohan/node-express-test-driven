@@ -37,22 +37,25 @@ npm run test
 GET /api/visitors?date=1404198000000&ignore=avila_adobe HTTP/1.1
 Host: localhost:3030
 Respose:
+
 {
-    "month": "July",
-    "year": 2014,
-    "ignored": {
-        "museum": "avila_adobe",
-        "visitors": 32378
-    },
-    "highest": {
-        "museum": "america_tropical_interpretive_center",
-        "visitors": 13490
-    },
-    "lowest": {
-        "museum": "hellman_quon",
-        "visitors": 120
-    },
-    "total": 28157
+    "attendance": {
+        "month": "July",
+        "year": 2014,
+        "ignored": {
+            "museum": "avila_adobe",
+            "visitors": 32378
+        },
+        "highest": {
+            "museum": "america_tropical_interpretive_center",
+            "visitors": 13490
+        },
+        "lowest": {
+            "museum": "hellman_quon",
+            "visitors": 120
+        },
+        "total": 28157
+    }
 }
 ```
 ```sh
@@ -60,17 +63,19 @@ GET /api/visitors?date=1404198000000&ignore=avila_adob1 HTTP/1.1
 Host: localhost:3030
 Response:
 {
-    "month": "July",
-    "year": 2014,
-    "highest": {
-        "museum": "avila_adobe",
-        "visitors": 32378
-    },
-    "lowest": {
-        "museum": "hellman_quon",
-        "visitors": 120
-    },
-    "total": 60535
+    "attendance": {
+        "month": "July",
+        "year": 2014,
+        "highest": {
+            "museum": "avila_adobe",
+            "visitors": 32378
+        },
+        "lowest": {
+            "museum": "hellman_quon",
+            "visitors": 120
+        },
+        "total": 60535
+    }
 }
 ```
 
