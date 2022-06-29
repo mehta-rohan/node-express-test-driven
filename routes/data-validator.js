@@ -1,8 +1,8 @@
 class Validator{
     validateVisitCount(req,res,next){
         let { date } = req.query || {};
-        if(!date){
-            res.status(400).end();  
+        if(!date || !Number.isInteger(parseInt(date))){
+            res.status(400).send({message:'Invalid date'});  
         }
         else{
             next();

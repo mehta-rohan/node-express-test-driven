@@ -1,6 +1,7 @@
 //During the test the env variable is set to test
 process.env.NODE_ENV = "test";
 require("../datasource");
+
 //Require the dev-dependencies
 let chai = require("chai");
 let chaiHttp = require("chai-http");
@@ -43,6 +44,19 @@ describe("Museum Visitor Service", () => {
             done();
           });
       });
+
+
+      it("it should throw error as we are sending invalid date", (done) => {
+        chai
+          .request(server)
+          .get("/api/visitors?date=abc&ignore=avila_adobe1")
+          .end((err, res) => {
+            res.should.have.status(400);
+            chai.expect(res.body).to.have.property('message','Invalid date'); // passes
+            done();
+          });
+      });
+
 
       it("it should GET 400", (done) => {
         chai
