@@ -56,7 +56,7 @@ class MuseumDataProvider {
 
     templateResponse["lowest"] = { museum: miniMusem, visitors: low };
     templateResponse["total"] = sum;
-    return templateResponse;
+    return {attendance:templateResponse};
   }
 
   getDataByDate(date) {

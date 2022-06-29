@@ -28,7 +28,7 @@ describe("Museum Visitor Service", () => {
         .end((err, res) => {
           res.should.have.status(200);
           //matching the response with required response
-          assert.equal(isPropertiesEqual(res.body, template), false);
+          assert.equal(isPropertiesEqual(res.body, template), true);
           done();
         });
     });
@@ -40,7 +40,7 @@ describe("Museum Visitor Service", () => {
           .end((err, res) => {
             res.should.have.status(200);
             //matching the response with required response
-            assert.equal(isPropertiesEqual(res.body, templateWithoutIgnore), false);
+            assert.equal(isPropertiesEqual(res.body, templateWithoutIgnore), true);
             done();
           });
       });

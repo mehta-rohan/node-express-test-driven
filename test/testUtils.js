@@ -39,6 +39,8 @@ const extractKeys = (obj, prefix = "") =>
   }, []);
 
 const isPropertiesEqual = (a, b) => {
+  // console.log(a,b)
+
   return extractKeys(a).sort().toString() == extractKeys(b).sort().toString();
 };
 
